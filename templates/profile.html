@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+ 
+    <a class="d-grid gap-2 col-7 mx-10" href="{% url 'Edit_profile' %}">
+        <button class="btn btn-primary" type="button">Edit Profile</button>
+    </a>
+
+{% if buy.exists%}
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for phars in buy %}
+        <div class="col">
+            <div class="card h-100">
+                <img src="{{ phars.car.photo.url }}" class="card-img-top" alt="{{ phars.car.car_name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ phars.car.car_name }}</h5>
+                    <p>
+                        <strong>Description:</strong> {{ phars.car.description|linebreaks }}
+                    </p>
+                    <p class="card-text"><strong>Price:</strong> {{ phars.car.price }} TK</p>
+                    <a href="{% url 'view_details' phars.car.id %}" class="btn btn-success">View Details</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

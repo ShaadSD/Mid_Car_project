@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{%  load crispy_forms_tags %}
+{% block content %}
+
+<a class="d-grid gap-2 col-3 mx-auto" href="{% url 'pass_chang' %}">
+    <button class="btn btn-warning mb-5">Password Change</button>
+</a>
+<form style="width:50% ; margin : auto" method="post">
+    {% csrf_token %}
+{{ form | crispy }}
+
+<button class="btn btn-warning mb-5">Submit</button>
+</form>
+
+{% endblock %}
