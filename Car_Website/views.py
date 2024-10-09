@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from car.models import Car,Buy
 from brand.models import Brand
 from car import forms
+from django.views import View
 from django.views.generic import ListView,DetailView
 
 def home(request,brand_slug=None):
@@ -44,17 +45,31 @@ class DetailCarView(DetailView):
 
 
 
-def buy_car(request,id):
-    car=Car.objects.get(pk=id)
+# def buy_car(request,id):
+#     car=Car.objects.get(pk=id)
 
-    if car.quantity>0:
-        car.quantity-=1
-        buy=Buy(user=request.user,car=car)
-        buy.save()
-        car.save()
-        return redirect('profile')
-    else:
-        return redirect('view_details',id=id)
+#     if car.quantity>0:
+#         car.quantity-=1
+#         buy=Buy(user=request.user,car=car)
+#         buy.save()
+#         car.save()
+#         return redirect('profile')
+#     else:
+#         return redirect('view_details',id=id)
+
+class Buy_car(View):
+    def post(self, request, id):
+        car=Car.objects.get(Car,pk=id)
+        if car.quantity>0:
+            car.quantity-=1
+            car.save()
+            Buy.objects.create(user=request.user,car=car)
+            return redirect('profile')
+        else:
+            return redirect('view_details',id=id)
+
+
+
 
 # def profile(request):
 #     buy=Buy.objects.filter(user=request.user)

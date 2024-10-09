@@ -16,7 +16,7 @@
                     <p class="card-text"><strong>Price:</strong> {{ object.price }} USD</p>
                     <p class="card-text"><strong>Quantity:</strong> {{ object.quantity }}</p>
                    {% if request.user.is_authenticated %}
-                    <button type="button" class="btn btn-success"><a href="{% url 'buy_car' object.id %}" class="btn btn-success">Buy Now</a></button>
+                    <button type="button" class="btn btn-success"><a href="{% url 'Buy_car' object.id %}" class="btn btn-success">Buy Now</a></button>
                     {% endif %}  
                 </div>
             </div>

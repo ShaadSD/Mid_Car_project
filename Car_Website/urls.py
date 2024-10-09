@@ -26,7 +26,7 @@ urlpatterns = [
     path('home/',views.home,name='homepage'),
     path('/<slug:brand_slug>/',views.home,name='brand_wise_post'),
     path('car/<int:id>/',views.DetailCarView.as_view(),name='view_details'),
-    path('buy_car/<int:id>/',views.buy_car,name='buy_car'),
+    path('buy_car/<int:id>/',views.Buy_car.as_view,name='Buy_car'),
    
      path('profile/',ProfileView.as_view(),name='profile'),
     path('add/',include('car.urls')),
